@@ -1,0 +1,6 @@
+{
+  "name": "臨床生理學學習平台",
+  "description": "專為醫檢師設計的臨床生理學互動學習工具，涵蓋心電圖判讀、肺功能分析、腦波觀測、肌電圖與超音波五大主題，具備動態參數模擬與隨機波形臨床診斷測驗。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
