@@ -22,10 +22,15 @@ export default function AITutor({ currentModule, currentMode, currentData }: AIT
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [messages, isLoading]);
 
   function getModuleName(mod: string) {
@@ -144,7 +149,11 @@ export default function AITutor({ currentModule, currentMode, currentData }: AIT
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[250px]" style={{ scrollbarWidth: 'thin' }}>
+      <div 
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[250px]" 
+        style={{ scrollbarWidth: 'thin' }}
+      >
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -204,8 +213,6 @@ export default function AITutor({ currentModule, currentMode, currentData }: AIT
             </div>
           </div>
         )}
-
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}
